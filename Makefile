@@ -17,7 +17,6 @@ OBJS=rail.o gram.o lex.o
 CC=gcc
 CFLAGS=-DYYDEBUG -O -DYYSTYPE_IS_DECLARED
 YACC=bison -y
-#YACC=byacc
 LEX=flex
 
 all: rail 
@@ -29,7 +28,7 @@ install: rail rail.sty rail.man
 
 clean:
 	-rm -f $(OBJS) rail gram.[ch] lex.c y.tab.[ch] y.output a.out core PATCH
-	-rm -f *.log *.aux *.rai *.rao *.dvi rail.txt SHAR.* TAR MANIFEST.BAK
+	-rm -f *.log *.aux *.rai *.rao *.dvi *.pdf rail.txt SHAR.* TAR MANIFEST.BAK
 
 lint: rail.c gram.c lex.c gram.h 
 	lint rail.c gram.c lex.c
@@ -43,7 +42,7 @@ tar:
 patch:
 	diff -bc old . | sed '/^diff/d' >PATCH
 
-doc:	rail.dvi rail.txt
+doc:	rail.pdf rail.txt
 
 $(OBJS): rail.h
 
@@ -62,13 +61,13 @@ rail: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o rail
 
 rail.rai: rail.tex
-	latex rail
+	pdflatex rail
 
 rail.rao: rail rail.rai
 	./rail rail
 
-rail.dvi: rail.rao rail.tex
-	latex rail
+rail.pdf: rail.rao rail.tex
+	pdflatex rail
 
 rail.txt: rail.man
 	nroff -man rail.man >rail.txt
