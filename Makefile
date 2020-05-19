@@ -7,10 +7,12 @@
 # 28-Oct-1997 K. Barthelmann	minor modifications
 #
 
+HOME=/usr/local
+
 BINDIR=$(HOME)/bin
 TEXDIR=$(HOME)/tex
 MANDIR=$(HOME)/man
-MANSUFFIX=l
+MANSUFFIX=1
 
 OBJS=rail.o gram.o lex.o
 
