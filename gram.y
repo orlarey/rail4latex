@@ -8,6 +8,9 @@
 
 char optchar;
 
+int yylex();
+
+void yyerror(const char *s);
 %}
 
 /* identifier */
