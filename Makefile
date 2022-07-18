@@ -24,6 +24,7 @@ LEX=flex
 all: rail 
 
 install: rail rail.sty rail.man
+	chmod a+x rail
 	cp rail $(BINDIR)
 	cp rail.sty $(TEXDIR)
 	cp rail.man $(MANDIR)/man$(MANSUFFIX)/rail.$(MANSUFFIX)
